@@ -1,0 +1,23 @@
+{
+  "require": {
+    "go-swoole/go-swoole":"~0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Demo\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "tmtbe",
+      "email": "896369042@qq.com",
+      "homepage": "https://github.com/tmtbe"
+    }
+  ],
+  "name": "go-swoole/http-easy-demo",
+  "description": "go-swoole http-easy-demo",
+  "license": "MIT"
+}
