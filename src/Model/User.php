@@ -8,7 +8,7 @@
 
 namespace Demo\Model;
 
-use GoSwoole\Go\GoModel;
+use ESD\Go\GoModel;
 
 class User extends GoModel
 {

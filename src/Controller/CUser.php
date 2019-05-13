@@ -11,9 +11,9 @@ namespace Demo\Controller;
 use DI\Annotation\Inject;
 use Demo\Model\User;
 use Demo\Service\UserService;
-use GoSwoole\Go\GoController;
-use GoSwoole\Plugins\Security\Annotation\PreAuthorize;
-use GoSwoole\Plugins\Security\Beans\Principal;
+use ESD\Go\GoController;
+use ESD\Plugins\Security\Annotation\PreAuthorize;
+use ESD\Plugins\Security\Beans\Principal;
 
 class CUser extends GoController
 {
@@ -64,8 +64,8 @@ class CUser extends GoController
     /**
      * @PreAuthorize(value="hasRole('user')")
      * @return User
-     * @throws \GoSwoole\Go\NoSupportRequestMethodException
-     * @throws \GoSwoole\BaseServer\Exception
+     * @throws \ESD\Go\NoSupportRequestMethodException
+     * @throws \ESD\BaseServer\Exception
      */
     public function user()
     {
@@ -77,8 +77,8 @@ class CUser extends GoController
     /**
      * @PreAuthorize(value="hasRole('user')")
      * @return User|null
-     * @throws \GoSwoole\BaseServer\Exception
-     * @throws \GoSwoole\Go\NoSupportRequestMethodException
+     * @throws \ESD\BaseServer\Exception
+     * @throws \ESD\Go\NoSupportRequestMethodException
      */
     public function updateUser()
     {

@@ -6,7 +6,7 @@
  * Time: 10:44
  */
 namespace Demo;
-use GoSwoole\Go\GoApplication;
+use ESD\Go\GoApplication;
 
 class Application extends GoApplication
 {

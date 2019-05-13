@@ -3,7 +3,7 @@
 namespace Test;
 use DI\Annotation\Inject;
 use Demo\Service\UserService;
-use GoSwoole\Plugins\PHPUnit\GoTestCase;
+use ESD\Plugins\PHPUnit\GoTestCase;
 
 /**
  * Created by PhpStorm.
