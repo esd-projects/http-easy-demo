@@ -12,5 +12,3 @@ esd:
       port: 8082
       open_http_protocol: true
       sock_type: 1
-      controller_name_space: Demo\Controller
-      index_controller_name: CUser

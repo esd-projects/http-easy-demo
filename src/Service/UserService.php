@@ -32,7 +32,7 @@ class UserService
 
     /**
      * get操作创建缓存
-     * @Cacheable(key="$p[0]",namespace="user")
+     * @Cacheable(key="$p[0]",namespace="user1")
      * @param $id
      * @return User|null
      * @throws Exception
@@ -46,7 +46,7 @@ class UserService
     /**
      * update操作修改缓存
      * @Transactional()
-     * @CacheEvict(key="$p[0]->id",namespace="user")
+     * @CacheEvict(key="$p[0]->id",namespace="user1")
      * @param User $user
      * @return User|null
      * @throws Exception

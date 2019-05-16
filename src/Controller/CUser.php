@@ -12,16 +12,21 @@ use DI\Annotation\Inject;
 use Demo\Model\User;
 use Demo\Service\UserService;
 use ESD\Go\GoController;
+use ESD\Plugins\EasyRoute\Annotation\GetMapping;
+use ESD\Plugins\EasyRoute\Annotation\PostMapping;
+use ESD\Plugins\EasyRoute\Annotation\RequestBody;
+use ESD\Plugins\EasyRoute\Annotation\RequestParam;
+use ESD\Plugins\EasyRoute\Annotation\RestController;
 use ESD\Plugins\Security\Annotation\PreAuthorize;
 use ESD\Plugins\Security\Beans\Principal;
 
+/**
+ * @RestController("user")
+ * Class CUser
+ * @package Demo\Controller
+ */
 class CUser extends GoController
 {
-    public function __construct()
-    {
-        var_dump(1111);
-    }
-
     /**
      * @Inject()
      * @var UserService
@@ -39,6 +44,10 @@ class CUser extends GoController
         $this->response->addHeader("Content-type", "text/html;charset=UTF-8");
     }
 
+    /**
+     * @GetMapping()
+     * @return string
+     */
     public function login()
     {
         $principal = new Principal();
@@ -55,6 +64,10 @@ class CUser extends GoController
 
     }
 
+    /**
+     * @GetMapping()
+     * @return string
+     */
     public function logout()
     {
         $this->session->invalidate();
@@ -62,37 +75,29 @@ class CUser extends GoController
     }
 
     /**
+     * @GetMapping()
+     * @RequestParam("id")
      * @PreAuthorize(value="hasRole('user')")
+     * @param $id
      * @return User
-     * @throws \ESD\Go\NoSupportRequestMethodException
      * @throws \ESD\BaseServer\Exception
+     * @throws \ESD\Plugins\Mysql\MysqlException
      */
-    public function user()
+    public function user($id)
     {
-        $this->assertGet();
-        $id = $this->request->getGetRequire("id");
         return $this->userService->getUser($id);
     }
 
     /**
+     * @PostMapping()
      * @PreAuthorize(value="hasRole('user')")
+     * @RequestBody("user")
+     * @param User $user
      * @return User|null
      * @throws \ESD\BaseServer\Exception
-     * @throws \ESD\Go\NoSupportRequestMethodException
      */
-    public function updateUser()
+    public function updateUser(User $user)
     {
-        $this->assertPost();
-        return $this->userService->updateUser(new User($this->request->getJsonBody()));
-    }
-
-    /**
-     * 找不到方法时调用
-     * @param $methodName
-     * @return mixed
-     */
-    protected function defaultMethod(string $methodName)
-    {
-        return "Hello";
+        return $this->userService->updateUser($user);
     }
 }
