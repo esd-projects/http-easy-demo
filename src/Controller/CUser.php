@@ -80,8 +80,11 @@ class CUser extends GoController
      * @PreAuthorize(value="hasRole('user')")
      * @param $id
      * @return User
-     * @throws \ESD\BaseServer\Exception
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      * @throws \ESD\Plugins\Mysql\MysqlException
+     * @throws \ESD\Plugins\Validate\ValidationException
+     * @throws \ReflectionException
      */
     public function user($id)
     {
@@ -94,7 +97,11 @@ class CUser extends GoController
      * @RequestBody("user")
      * @param User $user
      * @return User|null
-     * @throws \ESD\BaseServer\Exception
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @throws \ESD\Plugins\Mysql\MysqlException
+     * @throws \ESD\Plugins\Validate\ValidationException
+     * @throws \ReflectionException
      */
     public function updateUser(User $user)
     {

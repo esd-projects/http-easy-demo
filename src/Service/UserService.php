@@ -8,13 +8,12 @@
 
 namespace Demo\Service;
 
-use DI\Annotation\Inject;
-use ESD\BaseServer\Exception;
 use Demo\Model\User;
+use DI\Annotation\Inject;
 use ESD\Plugins\Cache\Annotation\Cacheable;
 use ESD\Plugins\Cache\Annotation\CacheEvict;
 use ESD\Plugins\Mysql\Annotation\Transactional;
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 
 class UserService
 {
@@ -26,7 +25,7 @@ class UserService
 
     /**
      * @Inject()
-     * @var Logger
+     * @var LoggerInterface
      */
     private $log;
 
@@ -35,8 +34,11 @@ class UserService
      * @Cacheable(key="$p[0]",namespace="user1")
      * @param $id
      * @return User|null
-     * @throws Exception
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      * @throws \ESD\Plugins\Mysql\MysqlException
+     * @throws \ESD\Plugins\Validate\ValidationException
+     * @throws \ReflectionException
      */
     public function getUser($id)
     {
@@ -49,7 +51,11 @@ class UserService
      * @CacheEvict(key="$p[0]->id",namespace="user1")
      * @param User $user
      * @return User|null
-     * @throws Exception
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @throws \ESD\Plugins\Mysql\MysqlException
+     * @throws \ESD\Plugins\Validate\ValidationException
+     * @throws \ReflectionException
      */
     public function updateUser(User $user)
     {
