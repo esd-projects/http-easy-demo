@@ -8,7 +8,18 @@
 namespace Demo;
 use ESD\Go\GoApplication;
 
-class Application extends GoApplication
+class Application
 {
-
+    /**
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @throws \ESD\Core\Exception
+     * @throws \ESD\Core\Plugins\Config\ConfigException
+     * @throws \ReflectionException
+     */
+    public static function main()
+    {
+        $application = new GoApplication();
+        $application->run();
+    }
 }
